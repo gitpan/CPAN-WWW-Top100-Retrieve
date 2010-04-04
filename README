@@ -1,0 +1,144 @@
+NAME
+    CPAN::WWW::Top100::Retrieve - Retrieves the CPAN Top100 data from
+    http://ali.as/top100
+
+SYNOPSIS
+            #!/usr/bin/perl
+            use strict; use warnings;
+
+            use CPAN::WWW::Top100::Retrieve;
+            use Data::Dumper;
+
+            my $top100 = CPAN::WWW::Top100::Retrieve->new;
+            print Dumper( $top100->list( 'heavy' ) );
+
+DESCRIPTION
+    This module retrieves the data from CPAN Top100 and returns it in a
+    structured format.
+
+  Constructor
+    This module uses Moose, so you can pass either a hash or hashref to the
+    constructor. The object will cache all data relevant to the Top100 for
+    as long as it's alive. If you want to get fresh data just make a new
+    object and use that.
+
+    The attributes are:
+
+   debug
+    ( not required )
+
+    A boolean value specifying debug warnings or not.
+
+   ua
+    ( not required )
+
+    The LWP::UserAgent object to use in place of the default one.
+
+    The default is:
+
+            LWP::UserAgent->new;
+
+   uri
+    ( not required )
+
+    The uri of Top100 data we should use to retrieve data in place of the
+    default one.
+
+    The default is:
+
+            CPAN::WWW::Top100::Retrieve::Utils::default_top100_uri()
+
+  Methods
+    Currently, there is only one method: list(). You call this and get the
+    arrayref of data back. For more information please look at the
+    CPAN::WWW::Top100::Retrieve::Dist class. You can call list() as many
+    times as you want, no need to re-instantiate the object for each query.
+
+   list
+    Takes one argument: the $type of Top100 list and returns an arrayref of
+    dists.
+
+    WARNING: list() will return an empty list if errors happen. Please look
+    at the error() method for the string.
+
+    Example:
+
+            use Data::Dumper;
+            print Dumper( $top100->list( 'heavy' ) );
+            print Dumper( $top100->list( 'volatile' ) );
+
+   error
+    Returns the error string if it was set, undef if not.
+
+SEE ALSO
+    CPAN::WWW::Top100::Retrieve::Dist
+
+    CPAN::WWW::Top100::Retrieve::Utils
+
+SUPPORT
+    You can find documentation for this module with the perldoc command.
+
+            perldoc CPAN::WWW::Top100::Retrieve
+
+  Websites
+    *   Search CPAN
+
+        <http://search.cpan.org/dist/CPAN-WWW-Top100-Retrieve>
+
+    *   AnnoCPAN: Annotated CPAN documentation
+
+        <http://annocpan.org/dist/CPAN-WWW-Top100-Retrieve>
+
+    *   CPAN Ratings
+
+        <http://cpanratings.perl.org/d/CPAN-WWW-Top100-Retrieve>
+
+    *   CPAN Forum
+
+        <http://cpanforum.com/dist/CPAN-WWW-Top100-Retrieve>
+
+    *   RT: CPAN's Request Tracker
+
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=CPAN-WWW-Top100-Retrieve>
+
+    *   CPANTS Kwalitee
+
+        <http://cpants.perl.org/dist/overview/CPAN-WWW-Top100-Retrieve>
+
+    *   CPAN Testers Results
+
+        <http://cpantesters.org/distro/C/CPAN-WWW-Top100-Retrieve.html>
+
+    *   CPAN Testers Matrix
+
+        <http://matrix.cpantesters.org/?dist=CPAN-WWW-Top100-Retrieve>
+
+    *   Git Source Code Repository
+
+        This code is currently hosted on github.com under the account
+        "apocalypse". Please feel free to browse it and pull from it, or
+        whatever. If you want to contribute patches, please send me a diff
+        or prod me to pull from your repository :)
+
+        <http://github.com/apocalypse/perl-cpan-www-top100-retrieve>
+
+  Bugs
+    Please report any bugs or feature requests to
+    "bug-cpan-www-top100-retrieve at rt.cpan.org", or through the web
+    interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=CPAN-WWW-Top100-Retrieve
+    >. I will be notified, and then you'll automatically be notified of
+    progress on your bug as I make changes.
+
+AUTHOR
+    Apocalypse <apocal@cpan.org>
+
+COPYRIGHT AND LICENSE
+    Copyright 2010 by Apocalypse
+
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
+    The full text of the license can be found in the LICENSE file included
+    with this module.
+
