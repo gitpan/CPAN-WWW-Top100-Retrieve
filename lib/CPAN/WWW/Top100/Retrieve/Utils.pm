@@ -1,13 +1,21 @@
+#
+# This file is part of CPAN-WWW-Top100-Retrieve
+#
+# This software is copyright (c) 2014 by Apocalypse.
+#
+# This is free software; you can redistribute it and/or modify it under
+# the same terms as the Perl 5 programming language system itself.
+#
+use strict; use warnings;
 # Declare our package
 package CPAN::WWW::Top100::Retrieve::Utils;
-use strict; use warnings;
+$CPAN::WWW::Top100::Retrieve::Utils::VERSION = '1.001';
+our $AUTHORITY = 'cpan:APOCAL';
 
-# Initialize our version
-use vars qw( $VERSION );
-$VERSION = '0.01';
+# ABSTRACT: Provides util functions
 
 # set ourself up for exporting
-use base qw( Exporter );
+use parent qw( Exporter );
 our @EXPORT_OK = qw( default_top100_uri
 	dbid2type type2dbid types dbids
 );
@@ -16,7 +24,7 @@ sub default_top100_uri {
 	return 'http://ali.as/top100/data.html';
 }
 
-# TODO hardcoded from CPAN::WWW::Top100::Generator v0.08
+# hardcoded from CPAN::WWW::Top100::Generator v0.08
 my %dbid_type = (
 	1	=> 'heavy',
 	2	=> 'volatile',
@@ -58,13 +66,22 @@ sub dbids {
 }
 
 1;
+
 __END__
 
-=for stopwords todo Top100 IDs dbid dbids uri
+=pod
+
+=encoding UTF-8
+
+=for :stopwords Apocalypse Top100 IDs dbid dbids uri
 
 =head1 NAME
 
-CPAN::WWW::Top100::Retrieve::Utils - Various utilities for Top100 retrieval
+CPAN::WWW::Top100::Retrieve::Utils - Provides util functions
+
+=head1 VERSION
+
+  This document describes v1.001 of CPAN::WWW::Top100::Retrieve::Utils - released November 06, 2014 as part of CPAN-WWW-Top100-Retrieve.
 
 =head1 SYNOPSIS
 
@@ -112,17 +129,51 @@ Returns the type given a dbid.
 
 Returns the dbid given a type.
 
+=head1 SEE ALSO
+
+Please see those modules/websites for more information related to this module.
+
+=over 4
+
+=item *
+
+L<CPAN::WWW::Top100::Retrieve|CPAN::WWW::Top100::Retrieve>
+
+=back
+
 =head1 AUTHOR
 
-Apocalypse E<lt>apocal@cpan.orgE<gt>
+Apocalypse <APOCAL@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2010 by Apocalypse
+This software is copyright (c) 2014 by Apocalypse.
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
-The full text of the license can be found in the LICENSE file included with this module.
+The full text of the license can be found in the
+F<LICENSE> file included with this distribution.
+
+=head1 DISCLAIMER OF WARRANTY
+
+THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
+GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
+DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
+PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
+EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
 
 =cut
